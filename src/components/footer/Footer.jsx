@@ -1,7 +1,8 @@
+import { createPortal } from "react-dom";
 import "./footer.css";
 
 function Footer() {
-  return (
+  return createPortal(
     <footer class="footer">
       <ul class="footer__list">
         <li class="footer__item">
@@ -27,7 +28,8 @@ function Footer() {
       </ul>
 
       <div class="footer__copyright">© 1997–2023 ООО «Яндекс»</div>
-    </footer>
+    </footer>,
+    document.body
   );
 }
 export default Footer;
