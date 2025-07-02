@@ -1,5 +1,5 @@
 import Footer from "./components/footer/Footer";
-import Main from "./components/main/main";
+import MainMenu from "./components/main/MainMenu";
 import "./App.css";
 import Header from "./components/header/Header";
 
@@ -8,7 +8,7 @@ function App() {
     <>
       <div id="app">
         <Header />
-        <Main />
+        <MainMenu />
       </div>
 
       <Footer />

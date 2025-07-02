@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import Event from "../event/Event";
-import "./main.css";
+import "./mainMenu.css";
 
 const TABS = {
   all: {
@@ -136,26 +136,26 @@ for (let i = 0; i < 6; ++i) {
 }
 const TABS_KEYS = Object.keys(TABS);
 
-function Main() {
+function MainMenu() {
   const ref = useRef();
   const initedRef = useRef(false);
   const [activeTab, setActiveTab] = useState("");
   const [hasRightScroll, setHasRightScroll] = useState(false);
+  const [sizes, setSizes] = useState([]);
 
   useEffect(() => {
     if (!activeTab && !initedRef.current) {
       initedRef.current = true;
       setActiveTab(new URLSearchParams(location.search).get("tab") || "all");
     }
-  });
+  }, [activeTab]);
 
   const onSelectInput = (event) => {
     setActiveTab(event.target.value);
   };
 
-  let sizes = [];
   const onSize = (size) => {
-    sizes = [...sizes, size];
+    setSizes((prevSizes) => [...prevSizes, size]);
   };
 
   useEffect(() => {
@@ -166,7 +166,7 @@ function Main() {
     if (newHasRightScroll !== hasRightScroll) {
       setHasRightScroll(newHasRightScroll);
     }
-  });
+  }, [hasRightScroll, sizes]);
 
   const onArrowCLick = () => {
     const scroller = ref.current.querySelector(
@@ -342,4 +342,4 @@ function Main() {
     </main>
   );
 }
-export default Main;
+export default MainMenu;
